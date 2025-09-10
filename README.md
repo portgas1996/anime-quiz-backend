@@ -1,1 +1,1 @@
-# AnimeQuizBot
+# anime-quiz-backend

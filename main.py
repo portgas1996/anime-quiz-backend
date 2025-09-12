@@ -4,9 +4,11 @@ from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# Разрешаем запросы с фронта (GitHub Pages)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # потом можно ограничить https://portgas1996.github.io
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -18,6 +20,10 @@ class Score(BaseModel):
     total: int
 
 LEADERS: List[Score] = []
+
+@app.get("/")
+def root():
+    return {"status": "ok"}
 
 @app.get("/leaders")
 def get_leaders():
